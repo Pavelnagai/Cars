@@ -1,13 +1,13 @@
 import React, {useEffect} from 'react';
 import { Header } from "./widget/header/header";
 import {useMe} from "./shared/hooks/useMe";
+import eruda from "eruda";
 
 function App() {
+    eruda.init()
+
     useMe()
 
-    useEffect(() => {
-        import('eruda').then((lib) => lib.default.init())
-    }, []);
   return (
       <div style={{ padding: '20px' }}>
        <Header />

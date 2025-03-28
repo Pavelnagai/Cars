@@ -6,11 +6,6 @@ export const useMe = () => {
 
     const lp: LaunchParams = retrieveLaunchParams();
 
-    if (['macos', 'tdesktop', 'weba', 'web', 'webk'].includes(lp.tgWebAppPlatform)) {
-        return;
-    }
-
-    postEvent('web_app_expand');
 
     console.log(lp)
 
@@ -18,4 +13,11 @@ export const useMe = () => {
         setTelegramUser(lp.tgWebAppData.user)
     }
 
+    if (['macos', 'tdesktop', 'weba', 'web', 'webk'].includes(lp.tgWebAppPlatform)) {
+        return;
+    }
+
+    postEvent('web_app_expand');
+    postEvent('web_app_request_fullscreen')
+    postEvent('web_app_setup_swipe_behavior', { allow_vertical_swipe: false })
 }
