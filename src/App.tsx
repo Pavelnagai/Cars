@@ -1,30 +1,16 @@
-import React, {useEffect} from 'react';
-import { Header } from "./widget/header/header";
-import {useMe} from "./shared/hooks/useMe";
 import eruda from "eruda";
-import {UsersList} from "./widget/users/users";
-import {isTMA} from "@telegram-apps/sdk-react";
+import { AppRouter } from "./app/providers/route/router";
 
-function App() {
+
+export const App = () => {
+
     eruda.init()
 
-    useMe()
-
-    useEffect(() => {
-        const checkTMA = async () => {
-            if (await isTMA()) {
-                console.log('It\'s Telegram Mini Apps');
-            }
-        };
-        checkTMA();
-    }, []);
-
   return (
-      <div style={{ padding: '20px' }}>
-       <Header />
-          <UsersList/>
-      </div>
+      <>
+          <div className="app h-full">
+                 <AppRouter />
+          </div>
+      </>
   );
 }
-
-export default App;
