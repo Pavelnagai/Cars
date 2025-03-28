@@ -1,30 +1,16 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, {useEffect} from 'react';
+import { Header } from "./widget/header/header";
+import {useMe} from "./shared/hooks/useMe";
 
 function App() {
-  const [message, setMessage] = useState('');
-  const [response, setResponse] = useState('');
+    useMe()
 
-    const sendMessageToBot = async () => {
-        try {
-            const res = await axios.post('http://localhost:8080/send', { message });
-            setResponse(res.data);
-        } catch (error) {
-            console.error('Ошибка:', error);
-        }
-    };
-
+    useEffect(() => {
+        import('eruda').then((lib) => lib.default.init())
+    }, []);
   return (
       <div style={{ padding: '20px' }}>
-        <h1>Управление Telegram-ботом</h1>
-        <input
-            type="text"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Введите сообщение"
-        />
-        <button onClick={sendMessageToBot}>Отправить</button>
-        {response && <p>Ответ бота: {response}</p>}
+       <Header />
       </div>
   );
 }
