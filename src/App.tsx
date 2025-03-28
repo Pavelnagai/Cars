@@ -1,5 +1,7 @@
 import eruda from "eruda";
 import { AppRouter } from "./app/providers/route/router";
+import { BrowserRouter } from "react-router-dom";
+import React from "react";
 
 
 export const App = () => {
@@ -9,7 +11,9 @@ export const App = () => {
   return (
       <>
           <div className="app h-full">
-                 <AppRouter />
+              <BrowserRouter>
+                  <AppRouter />
+              </BrowserRouter>
           </div>
       </>
   );
